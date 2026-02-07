@@ -1,0 +1,11 @@
+/FinanceFlow-Pro
+│
+├── index.html            # Estrutura (HTML Atualizado v2.2)
+├── style.css             # Estilo (CSS Moderno v2.0)
+├── script.js             # Lógica (JS Completo v2.2)
+│
+│
+└── /docs                 # Documentação de Gerenciamento
+    ├── REQUIREMENTS.md   # Requisitos levantados
+    ├── CHANGELOG.md      # Histórico de versões
+    └── ROADMAP.md        # Planos futuros

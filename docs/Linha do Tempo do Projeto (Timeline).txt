@@ -1,0 +1,27 @@
+gantt
+    title Cronograma de Desenvolvimento - FinanceFlow Pro
+    dateFormat  2026-18-01
+
+
+    section Fase 1: MVP
+    Estrutura Base (HTML/CSS/JS)      :done, a1, 2026-18-01, 2d
+    Lógica de CRUD e LocalStorage     :done, a2, 2026-18-01, 2d
+    Gráficos Iniciais (Chart.js)      :done, a3, 2026-18-01, 1d
+
+    section Fase 2: Funcionalidade
+    Filtros de Data e Saldos          :done, b1, 2026-19-01, 2d
+    Exportação Excel (CSV)            :done, b2, 2026-20-01, 1d
+    Sistema de Edição de Dados        :done, b3, 2026-20-01, 1d
+
+    section Fase 3: Planejamento
+    Módulo de Metas (Budgeting)       :done, c1, 2026-23-01, 2d
+    Barras de Progresso Visuais       :done, c2, 2026-23-01, 1d
+
+    section Fase 4: UX/UI
+    Redesign "Modern Fintech"         :done, d1, 2026-02-02, 3d
+    Implementação Fonte Inter/Ícones  :done, d2, 2026-02-02, 1d
+
+    section Fase 5: Enterprise
+    Backup e Restore (JSON)           :done, e1, 2026-04-02, 1d
+    Sistema de Busca Avançada         :done, e2, 2026-04-02, 1d
+    Recorrência e Parcelamento        :active, e3, 2026-05-02, 2d

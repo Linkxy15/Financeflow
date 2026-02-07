@@ -1,0 +1,45 @@
+# Documento de Requisitos do Produto (PRD)
+**Projeto:** FinanceFlow Pro
+**Versão Atual:** 2.2.0
+**Tipo:** Single Page Application (SPA) Web Financeira
+
+## 1. Visão Geral
+O FinanceFlow Pro é um sistema de gestão financeira pessoal focado em privacidade (Offline-first), design moderno e ferramentas avançadas de análise, operando inteiramente no navegador do usuário.
+
+## 2. Requisitos Funcionais (O que o sistema faz)
+
+### 2.1 Gestão de Transações
+- [x] **RF01:** O usuário deve poder adicionar Receitas e Despesas.
+- [x] **RF02:** O sistema deve permitir categorização (Alimentação, Transporte, Salário, etc.).
+- [x] **RF03:** O sistema deve permitir a edição e exclusão de lançamentos.
+- [x] **RF04:** Suporte a compras parceladas (gera lançamentos futuros automaticamente).
+
+### 2.2 Visualização e Análise
+- [x] **RF05:** Dashboard com Resumo (Entradas, Saídas, Saldo).
+- [x] **RF06:** Gráfico de Rosca (Doughnut) interativo para despesas por categoria.
+- [x] **RF07:** Tabela de extrato detalhada com identificação visual de tipo (Cores/Ícones).
+- [x] **RF08:** Filtro global por Mês/Ano.
+
+### 2.3 Planejamento e Metas
+- [x] **RF09:** O usuário pode definir teto de gastos por categoria.
+- [x] **RF10:** Visualização de barras de progresso com semáforo (Verde/Amarelo/Vermelho).
+
+### 2.4 Automação
+- [x] **RF11:** Cadastro de contas recorrentes (Fixos) com lançamento manual facilitado.
+
+### 2.5 Gestão de Dados
+- [x] **RF12:** Persistência automática via LocalStorage.
+- [x] **RF13:** Exportação de relatório em CSV (Compatível com Excel).
+- [x] **RF14:** Backup completo do sistema em arquivo .JSON.
+- [x] **RF15:** Restauração de dados via upload de arquivo .JSON.
+- [x] **RF16:** "Hard Reset" (Apagar tudo).
+
+### 2.6 Usabilidade
+- [x] **RF17:** Alternância de Tema (Claro/Escuro).
+- [x] **RF18:** Busca textual em tempo real no extrato.
+
+## 3. Requisitos Não-Funcionais (Qualidade)
+- **RNF01 (Privacidade):** Nenhum dado deve ser enviado para servidores externos.
+- **RNF02 (Desempenho):** O carregamento deve ser instantâneo (< 1s).
+- **RNF03 (Compatibilidade):** Deve funcionar em Chrome, Firefox e Edge modernos.
+- **RNF04 (UI/UX):** Design responsivo e uso de feedback visual (cores de erro/sucesso).

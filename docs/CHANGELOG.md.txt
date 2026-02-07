@@ -1,0 +1,41 @@
+# Changelog - FinanceFlow Pro
+
+## [v2.2.0] - Versão "Financial Master" (Atual)
+### Adicionado
+- **Parcelamento Inteligente:** Opção de lançar compras divididas (ex: 10x), gerando registros futuros automaticamente.
+- **Módulo de Recorrência:** Painel para gerenciar contas fixas (Aluguel, Internet) e lançá-las com um clique mensalmente.
+- **Alerta de Fixos:** Card no dashboard avisando se os fixos do mês ainda não foram lançados.
+
+## [v2.1.0] - Versão "Secure & Search"
+### Adicionado
+- **Sistema de Backup:** Botão para baixar arquivo `.json` com todos os dados.
+- **Restore:** Capacidade de ler arquivo de backup e restaurar o sistema.
+- **Busca:** Barra de pesquisa em tempo real acima da tabela.
+- **Empty States:** Ilustrações amigáveis quando não há dados na tabela.
+- **Menu de Configurações:** Modal centralizado para gestão de dados.
+
+## [v2.0.0] - Versão "Modern UI"
+### Alterado
+- **Redesign Completo:** Migração para estilo "Modern Fintech".
+- **Tipografia:** Adoção da fonte 'Inter'.
+- **UI:** Uso de sombras suaves (Soft Shadows), bordas arredondadas e badges modernos na tabela.
+- **Ícones:** Migração para Google Material Icons Round.
+
+## [v1.2.0] - Versão "Planner"
+### Adicionado
+- **Metas de Gastos:** Possibilidade de definir limites por categoria.
+- **Barras de Progresso:** Visualização gráfica do consumo do orçamento.
+
+## [v1.1.0] - Versão "Pro Features"
+### Adicionado
+- **Filtro Temporal:** Seletor de data (Mês/Ano).
+- **Cálculo de Saldo:** Diferenciação entre Receita e Despesa.
+- **Edição:** Botão para corrigir lançamentos errados.
+- **Exportação:** Geração de arquivo CSV.
+
+## [v1.0.0] - Versão "MVP"
+### Lançamento
+- Cadastro básico de gastos.
+- Gráfico simples.
+- Armazenamento em LocalStorage.
+- Modos Claro/Escuro básicos.

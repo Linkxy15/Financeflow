@@ -1,0 +1,12 @@
+# Roadmap Futuro
+
+## Curto Prazo (v2.3)
+- [ ] **Dashboard Personalizável:** Permitir arrastar os cards para mudar a ordem.
+- [ ] **Tags:** Adicionar sistema de #tags além das categorias (ex: #ferias, #obra).
+
+## Médio Prazo (v3.0)
+- [ ] **PWA (Progressive Web App):** Transformar o site em um app instalável no celular.
+- [ ] **Múltiplas Carteiras:** Separar gastos de "Banco A", "Dinheiro Vivo", "Cartão de Crédito".
+
+## Longo Prazo (v4.0 - Cloud)
+- [ ] **Login e Nuvem:** Sincronização entre dispositivos (requer Backend/Firebase).
