@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+</head>
+<body class="light-mode">
+   <nav class="navbar">
+    <div class="logo"><span class="material-icons-round">account_balance_wallet</span> FinanceFlow</div>
+    <ul class="menu">
+        <li><button onclick="openRecurringModal()" title="Gerenciar Fixos"><span class="material-icons-round">repeat</span></button></li>
+        <li><button onclick="openSettings()" title="Configurações e Backup"><span class="material-icons-round">settings</span></button></li>
+        <li><button onclick="showSection('dashboard')"><span class="material-icons-round" style="margin-right:5px;">dashboard</span> Dashboard</button></li>
+        <li><button onclick="showSection('extrato')"><span class="material-icons-round" style="margin-right:5px;">list_alt</span> Extrato</button></li>
+        <li><button id="theme-toggle" title="Trocar Tema"><span class="material-icons-round">brightness_4</span></button></li>
+    </ul>
+</nav>
+    <main class="container">
+        <div class="control-bar card">
+            <div class="filter-group">
+                <label for="month-filter">Período:</label>
+                <input type="month" id="month-filter">
+            </div>
+            <button onclick="exportToCSV()" class="btn-export"><span class="material-icons">download</span> Excel</button>
+        </div>
+
+        <section id="input-section">
+            <div class="card">
+                <h2 id="form-title">Novo Lançamento</h2>
+                <form id="finance-form">
+                    <input type="hidden" id="transaction-id"> <div class="form-row">
+                        <select id="type" required onchange="toggleCategories()">
+                            <option value="expense">🔴 Despesa</option>
+                            <option value="income">🟢 Receita</option>
+                        </select>
+                        
+                        <select id="category" required>
+                            </select>
+                    </div>
+<div class="form-row" style="margin-bottom:15px; align-items:center;">
+    <div style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="is-installment" style="width:auto; margin:0;" onchange="toggleInstallmentInput()">
+        <label for="is-installment" style="cursor:pointer; user-select:none;">É parcelado?</label>
+    </div>
+    <div id="installment-group" class="hidden" style="flex:1;">
+        <input type="number" id="installment-count" placeholder="Nº Parcelas (ex: 12)" min="2" max="60">
+    </div>
+</div>
+                    <div class="form-row">
+                        <input type="number" id="amount" placeholder="Valor (R$)" step="0.01" required>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <input type="text" id="description" placeholder="Descrição (ex: Supermercado, Salário)" required>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-add" id="submit-btn">Adicionar</button>
+                        <button type="button" class="btn-cancel hidden" id="cancel-edit" onclick="resetForm()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboard">
+            <div id="recurring-alert" class="card hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <h3 style="color:white; margin-bottom:5px;"><span class="material-icons-round">event_repeat</span> Lançamentos Fixos</h3>
+            <p style="font-size:0.9rem; opacity:0.9; margin:0;">Deseja lançar seus gastos/ganhos fixos (Aluguel, Salário...) neste mês?</p>
+        </div>
+        <button onclick="processRecurring()" class="btn-add" style="background:white; color:#764ba2; width:auto; padding:8px 16px;">Lançar Agora</button>
+    </div>
+</div>
+           <div class="grid-stats">
+             <div class="card stat-card income">
+                <h3><span class="material-icons-round">arrow_circle_up</span> Entradas</h3>
+                <p id="total-income">R$ 0,00</p>
+            </div>
+            <div class="card stat-card expense">
+                <h3><span class="material-icons-round">arrow_circle_down</span> Saídas</h3>
+                <p id="total-expense">R$ 0,00</p>
+            </div>
+            <div class="card stat-card balance">
+                <h3><span class="material-icons-round">account_balance</span> Saldo Total</h3>
+                <p id="total-balance">R$ 0,00</p>
+            </div>
+           </div>
+            
+            <div class="card chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+            <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <h2>Metas Mensais</h2>
+        <button onclick="openBudgetModal()" class="btn-icon" title="Configurar Metas">⚙️ Configurar</button>
+    </div>
+    <div id="budget-container">
+        </div>
+</div>
+
+<div id="budget-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Definir Limites (R$)</h3>
+        <div id="budget-inputs"></div>
+        <div class="form-actions" style="margin-top:20px;">
+            <button onclick="saveBudgets()" class="btn-add">Salvar Metas</button>
+            <button onclick="closeBudgetModal()" class="btn-cancel">Fechar</button>
+        </div>
+    </div>
+</div>
+        </section>
+
+        <section id="extrato" class="hidden">
+            <div class="search-bar-container" style="margin-bottom: 15px; display: flex; gap: 10px;">
+    <div style="position: relative; width: 100%;">
+        <span class="material-icons-round" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);">search</span>
+        <input type="text" id="search-input" placeholder="Buscar por descrição (ex: Mercado, Uber...)" onkeyup="filterTable()" style="padding-left: 35px; margin: 0;">
+    </div>
+</div>
+            <div class="card">
+                <h2>Extrato do Período</h2>
+                <div class="table-responsive">
+                    <table id="finance-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+<div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3>Configurações do Sistema</h3>
+            <button onclick="closeSettings()" class="btn-icon">✕</button>
+        </div>
+        
+        <div class="setting-item" style="border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:15px;">
+            <h4>🔐 Segurança dos Dados</h4>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:10px;">
+                Seus dados ficam salvos apenas neste navegador. Faça backups frequentes.
+            </p>
+            <div style="display:flex; gap:10px;">
+                <button onclick="backupData()" class="btn-add" style="background:var(--text-main)">
+                    <span class="material-icons-round">save</span> Baixar Backup
+                </button>
+                <label for="restore-file" class="btn-cancel" style="display:flex; align-items:center; justify-content:center; gap:5px; cursor:pointer; margin-top:0;">
+                    <span class="material-icons-round">upload_file</span> Restaurar
+                </label>
+                <input type="file" id="restore-file" style="display:none" onchange="restoreData(this)">
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <h4 style="color:var(--danger)">⚠️ Zona de Perigo</h4>
+            <button onclick="wipeData()" class="btn-cancel" style="border-color:var(--danger); color:var(--danger)">
+                Apagar Todos os Dados
+            </button>
+        </div>
+    </div>
+</div>
+<div id="recurring-modal" class="modal hidden">
+    <div class="modal-content" style="max-width: 600px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3>🔁 Gerenciar Fixos Mensais</h3>
+            <button onclick="closeRecurringModal()" class="btn-icon">✕</button>
+        </div>
+
+        <div style="background:var(--input-bg); padding:15px; border-radius:8px; margin-bottom:20px; border:1px solid var(--border-color);">
+            <h4 style="margin:0 0 10px 0; font-size:0.9rem; color:var(--text-muted);">Novo Item Fixo</h4>
+            <div class="form-row">
+                <select id="rec-type">
+                    <option value="expense">🔴 Despesa</option>
+                    <option value="income">🟢 Receita</option>
+                </select>
+                <input type="number" id="rec-day" placeholder="Dia (1-31)" min="1" max="31">
+            </div>
+            <div class="form-row">
+                <input type="text" id="rec-desc" placeholder="Descrição (ex: Aluguel)">
+                <input type="number" id="rec-amount" placeholder="Valor (R$)">
+            </div>
+            <button onclick="addRecurringItem()" class="btn-add" style="margin-top:10px;">Salvar Modelo</button>
+        </div>
+
+        <div style="max-height:300px; overflow-y:auto;">
+            <table id="recurring-table">
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Desc.</th>
+                        <th>Valor</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="recurring-list"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+/* --- Variáveis e Tema Moderno --- */
+:root {
+    /* Paleta de Cores Refinada */
+    --primary: #3b82f6; /* Azul mais moderno */
+    --primary-hover: #2563eb;
+    --success: #10b981; /* Verde esmeralda */
+    --danger: #ef4444;  /* Vermelho coral */
+    --warning: #f59e0b; /* Âmbar */
+    
+    /* Modos Claro (Light) */
+    --bg-body: #f3f4f6; /* Cinza muito claro para o fundo */
+    --bg-card: #ffffff;
+    --text-main: #1f2937; /* Cinza quase preto */
+    --text-muted: #6b7280; /* Cinza médio para textos secundários */
+    --border-color: #e5e7eb;
+    --input-bg: #f9fafb;
+    
+    /* Sombras Suaves (Key to modern look) */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    --radius: 12px; /* Bordas arredondadas consistentes */
+}
+
+/* Modo Escuro (Dark) Otimizado */
+.dark-mode {
+    --bg-body: #111827; /* Azul noite profundo */
+    --bg-card: #1f2937; /* Cinza azulado escuro */
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    --input-bg: #111827;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Reset Global e Tipografia --- */
+* { box-sizing: border-box; }
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif; /* Fonte Nova */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h2, h3 { color: var(--text-main); margin-top: 0; font-weight: 600; }
+
+/* --- Componentes Base --- */
+.container { padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
+.card {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color); /* Borda sutil para definição */
+    margin-bottom: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+/* Efeito sutil de "levantar" ao passar o mouse no card */
+.card:hover { box-shadow: var(--shadow-lg); }
+
+.hidden { display: none !important; }
+
+/* Ícones do Google Material Round */
+.material-icons-round { vertical-align: middle; }
+
+/* --- Navbar Flutuante --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--bg-card); /* Navbar da cor dos cards */
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky; top: 0; z-index: 100; /* Fixa no topo */
+}
+.logo { font-weight: 700; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; color: var(--primary); }
+.menu { list-style: none; display: flex; gap: 10px; padding: 0; margin: 0; }
+.menu button {
+    background: transparent; border: none; color: var(--text-muted);
+    cursor: pointer; padding: 8px 12px; border-radius: 8px; font-weight: 500;
+    transition: 0.2s; display: flex; align-items: center; font-family: 'Inter';
+}
+.menu button:hover { background: var(--input-bg); color: var(--primary); }
+/* Botão de tema circular */
+#theme-toggle { padding: 8px; border-radius: 50%; background: var(--input-bg); }
+
+
+/* --- Botões e Inputs --- */
+.btn-add, .btn-export, .btn-cancel {
+    padding: 12px 20px; border: none; border-radius: 8px;
+    cursor: pointer; font-size: 0.95rem; font-weight: 600;
+    transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-add { background: var(--primary); color: white; width: 100%; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4); }
+.btn-add:hover { background: var(--primary-hover); box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.5); }
+.btn-export { background: var(--success); color: white; }
+.btn-export:hover { filter: brightness(1.05); }
+.btn-cancel { background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); width: 100%; margin-top: 8px;}
+.btn-cancel:hover { background: var(--input-bg); color: var(--text-main); }
+
+.btn-icon {
+    background: var(--input-bg); border: none; cursor: pointer;
+    padding: 8px; border-radius: 8px; color: var(--text-muted);
+    transition: 0.2s; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-icon:hover { background: var(--border-color); color: var(--text-main); }
+
+input, select {
+    width: 100%; padding: 12px 16px; margin: 8px 0;
+    border: 1px solid var(--border-color); border-radius: 8px;
+    background: var(--input-bg); color: var(--text-main);
+    font-family: 'Inter'; font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+/* Efeito de foco moderno */
+input:focus, select:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Anel de foco azul */
+}
+
+/* --- Layout Específico --- */
+.control-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; padding: 15px 24px; }
+.filter-group label { font-weight: 500; color: var(--text-muted); margin-right: 10px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* --- Dashboard Stats (Cards Principais) --- */
+.grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 24px; }
+.stat-card { display: flex; flex-direction: column; }
+/* Ícones sutis nos títulos dos cards */
+.stat-card h3 {
+    margin: 0 0 15px 0; font-size: 0.9rem; font-weight: 500;
+    color: var(--text-muted); display: flex; align-items: center; gap: 8px;
+}
+.stat-card p { font-size: 2rem; font-weight: 700; margin: 0; line-height: 1.1; }
+
+/* Bordas coloridas no topo dos cards de estatística */
+.stat-card.income { border-top: 4px solid var(--success); }
+.stat-card.income p { color: var(--success); }
+.stat-card.expense { border-top: 4px solid var(--danger); }
+.stat-card.expense p { color: var(--danger); }
+.stat-card.balance { border-top: 4px solid var(--primary); }
+.stat-card.balance p { color: var(--primary); }
+
+.chart-container { min-height: 350px; display: flex; align-items: center; justify-content: center; }
+
+/* --- Metas (Budget Bars) --- */
+.budget-item { margin-bottom: 20px; }
+.budget-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; font-weight: 500; }
+/* Fundo da barra mais sutil */
+.progress-bg { background: var(--border-color); height: 8px; border-radius: 10px; overflow: hidden; }
+/* Barras com gradiente sutil */
+.progress-bar {
+    height: 100%; border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress-green { background: linear-gradient(90deg, var(--success), #34d399); }
+.progress-yellow { background: linear-gradient(90deg, var(--warning), #fbbf24); }
+.progress-red { background: linear-gradient(90deg, var(--danger), #f87171); }
+
+/* --- Tabela Moderna --- */
+.table-responsive { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border-color); }
+table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+th {
+    background: var(--input-bg); text-align: left; padding: 16px;
+    font-weight: 600; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;
+}
+td { padding: 16px; border-top: 1px solid var(--border-color); color: var(--text-main); }
+/* Efeito hover na linha da tabela */
+tbody tr:hover { background-color: var(--input-bg); }
+
+.type-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+    border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+}
+.type-income { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.type-expense { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+/* --- Modal --- */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); /* Fundo mais escuro */
+    backdrop-filter: blur(4px); /* Efeito de desfoque no fundo */
+    z-index: 1000; display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.modal:not(.hidden) { opacity: 1; pointer-events: auto; }
+.modal-content {
+    background: var(--bg-card); padding: 32px; border-radius: 16px;
+    width: 95%; max-width: 450px; box-shadow: var(--shadow-lg);
+    transform: translateY(20px); transition: transform 0.3s ease;
+}
+.modal:not(.hidden) .modal-content { transform: translateY(0); }
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+.empty-icon {
+    font-size: 48px;
+    opacity: 0.3;
+    margin-bottom: 10px;
+    display: block;
+}
